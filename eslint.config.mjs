@@ -22,11 +22,10 @@ export default [
   {
     ignores: [
       "coverage",
-      ".storybook",
       ".next",
       "*.config.mjs",
       "tailwind.config.ts",
-      "src/types/generatedSchema.ts",
+      "components/ui/**/*",
     ],
   },
   ...fixupConfigRules(
@@ -36,9 +35,8 @@ export default [
       "plugin:import/recommended",
       "plugin:import/warnings",
       "plugin:tailwindcss/recommended",
-      "plugin:storybook/recommended",
-      "prettier"
-    )
+      "prettier",
+    ),
   ),
   {
     plugins: {
@@ -144,7 +142,7 @@ export default [
     },
   },
   {
-    files: ["src/components/icons/*.tsx"],
+    files: ["components/icons/**/*.{ts,tsx}"],
     rules: {
       "no-restricted-imports": "off",
     },
