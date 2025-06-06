@@ -1,8 +1,10 @@
-import { ThemeToggle } from "@/components/composite/theme-toggle";
-import { ThemeProvider } from "@/providers/theme-provider";
+import "./globals.css";
+
 import type { Metadata } from "next";
 import { Source_Code_Pro } from "next/font/google";
-import "./globals.css";
+
+import { ThemeToggle } from "@/components/composite/theme-toggle";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 const sourceCodePro = Source_Code_Pro({
   weight: "400",
@@ -22,7 +24,11 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${sourceCodePro.className} antialiased dark:bg-gray-800 bg-white dark:text-white text-black`}
+        className={`
+          ${sourceCodePro.className}
+          bg-white text-black antialiased
+          dark:bg-gray-800 dark:text-white
+        `}
         style={{
           caretColor: "white",
         }}

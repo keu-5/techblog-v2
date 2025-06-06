@@ -22,29 +22,36 @@ export const ThemeToggle = ({ children }: { children: React.ReactNode }) => {
           <Button
             variant="outline"
             size="icon"
-            className="
-              fixed bottom-8 right-8 
-              dark:text-gray-800 text-gray-200
-              hover:dark:text-gray-700 hover:text-gray-200
-              dark:bg-white bg-black
-              hover:dark:bg-gray-100 hover:bg-gray-950
-              dark:border-white border-black
-            "
+            className={`
+              fixed bottom-8 right-8 border-black bg-black text-gray-200
+              hover:bg-gray-950 hover:text-gray-200
+              dark:border-white dark:bg-white dark:text-gray-800
+              hover:dark:bg-gray-100 hover:dark:text-gray-700
+            `}
           >
-            <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <Sun
+              className={`
+                size-[1.2rem] rotate-0 scale-100 transition-all
+                dark:-rotate-90 dark:scale-0
+              `}
+            />
+            <Moon
+              className={`
+                absolute size-[1.2rem] rotate-90 scale-0 transition-all
+                dark:rotate-0 dark:scale-100
+              `}
+            />
             <span className="sr-only">Toggle theme</span>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent
           align="end"
-          className="
-            dark:text-gray-800 text-gray-200
-            hover:dark:text-gray-700 hover:text-gray-200
-            dark:bg-white bg-black
-            hover:dark:bg-gray-100 hover:bg-gray-950
-            border-none
-          "
+          className={`
+            border-none bg-black text-gray-200
+            hover:bg-gray-950 hover:text-gray-200
+            dark:bg-white dark:text-gray-800
+            hover:dark:bg-gray-100 hover:dark:text-gray-700
+          `}
         >
           <DropdownMenuItem
             className="dark:hover:bg-gray-300 dark:hover:text-black"
