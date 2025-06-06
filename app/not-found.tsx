@@ -21,12 +21,12 @@ export default function NotFound() {
 
         <Separator className="mb-4 mt-16 bg-gray-400" />
 
-        <div className="my-8 flex w-full items-center justify-between px-4">
+        <div className="my-8 flex w-full flex-col items-center gap-8 px-4">
           <Link href="/">
             <div
               className={`
-                items-center gap-4
-                lg:flex
+                flex flex-col items-center justify-center gap-4
+                lg:flex-row lg:justify-start
               `}
             >
               <h1
