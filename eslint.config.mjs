@@ -25,7 +25,7 @@ export default [
       ".next",
       "*.config.mjs",
       "tailwind.config.ts",
-      "src/types/generatedSchema.ts",
+      "components/ui/**/*",
     ],
   },
   ...fixupConfigRules(
@@ -142,7 +142,7 @@ export default [
     },
   },
   {
-    files: ["src/components/**/*.{ts,tsx}"],
+    files: ["components/**/*.{ts,tsx}"],
     rules: {
       "no-restricted-imports": "off",
     },
