@@ -142,7 +142,7 @@ export default [
     },
   },
   {
-    files: ["components/**/*.{ts,tsx}"],
+    files: ["components/icons/**/*.{ts,tsx}"],
     rules: {
       "no-restricted-imports": "off",
     },

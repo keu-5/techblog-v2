@@ -1,7 +1,9 @@
 "use client";
-import { Moon, Sun } from "lucide-react";
+
 import { useTheme } from "next-themes";
 
+import { MoonIcon } from "@/components/icons/moon";
+import { SunIcon } from "@/components/icons/sun";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -29,13 +31,13 @@ export const ThemeToggle = ({ children }: { children: React.ReactNode }) => {
               hover:dark:bg-gray-100 hover:dark:text-gray-700
             `}
           >
-            <Sun
+            <SunIcon
               className={`
                 size-[1.2rem] rotate-0 scale-100 transition-all
                 dark:-rotate-90 dark:scale-0
               `}
             />
-            <Moon
+            <MoonIcon
               className={`
                 absolute size-[1.2rem] rotate-90 scale-0 transition-all
                 dark:rotate-0 dark:scale-100
