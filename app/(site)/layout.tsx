@@ -1,4 +1,4 @@
-import { LeftSidebar } from "@/app/left-sidebar";
+import { LeftSidebar } from "@/app/(site)/left-sidebar";
 import { findDocs } from "@/features/searchResults/repositories/searchResultRepository";
 import React from "react";
 
