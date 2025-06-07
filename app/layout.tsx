@@ -44,36 +44,35 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ThemeToggle>
-            <div
-              className={`
+          <div
+            className={`
                 h-full
                 md:mx-12 md:mt-12
               `}
-            >
-              <div
-                className={`
+          >
+            <div
+              className={`
                   left-12 top-12 z-[105] w-full p-4
                   md:fixed md:h-screen md:w-1/4
                   lg:w-1/5
                 `}
-              >
-                <LeftSidebar docs={docs} />
-              </div>
+            >
+              <LeftSidebar docs={docs} />
+            </div>
 
-              <div
-                className={`
+            <div
+              className={`
                   size-full p-4
                   md:ml-[25%] md:w-3/4
                   lg:ml-[20%] lg:w-3/5
                 `}
-              >
-                {children}
-              </div>
+            >
+              {children}
             </div>
+          </div>
 
-            <Toaster />
-          </ThemeToggle>
+          <Toaster />
+          <ThemeToggle />
         </ThemeProvider>
       </body>
     </html>
