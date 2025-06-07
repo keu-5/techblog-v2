@@ -21,6 +21,7 @@ async function main() {
       slug: file.replace(/\.md$/, ""),
       folder: path.dirname(file),
       content,
+      createdAt: stat.birthtime.toISOString(),
       updatedAt: stat.mtime.toISOString(),
     };
   });

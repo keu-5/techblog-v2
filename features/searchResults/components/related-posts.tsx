@@ -1,4 +1,4 @@
-import { FolderIcon } from "@/components/icons/folder";
+import { FolderData } from "@/components/common/folder-data";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "@/components/ui/link";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -18,22 +18,7 @@ export const RelatedPosts = ({ docs }: RelatedPostsProps) => {
             key={doc.slug}
             className="w-full flex flex-col gap-3 rounded-lg p-4"
           >
-            <div className="flex justify-between items-center">
-              <p className="flex justify-between items-center gap-1 text-sm">
-                <FolderIcon className="h-3 w-3 text-gray-500" />
-                <Link
-                  href={{
-                    pathname: "articles",
-                    query: {
-                      folder: doc.folder,
-                    },
-                  }}
-                  className="hover:underline"
-                >
-                  {doc.folder || "Uncategorized"}
-                </Link>
-              </p>
-            </div>
+            <FolderData folder={doc.folder} />
 
             <Link
               href={`/${doc.slug}`}

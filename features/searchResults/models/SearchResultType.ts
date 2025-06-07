@@ -5,6 +5,7 @@ export type DocIndex = {
   slug: string;
   folder: string;
   content: string;
+  createdAt: string;
   updatedAt: string;
 };
 
