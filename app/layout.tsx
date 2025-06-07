@@ -6,6 +6,7 @@ import { Source_Code_Pro } from "next/font/google";
 import { LeftSidebar } from "@/app/left-sidebar";
 import { ThemeToggle } from "@/components/composite/theme-toggle";
 import { Toaster } from "@/components/ui/sonner";
+import { findDocs } from "@/features/searchResults/repositories/searchResultRepository";
 import { ThemeProvider } from "@/providers/theme-provider";
 
 const sourceCodePro = Source_Code_Pro({
@@ -23,6 +24,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { docs } = findDocs();
+
   return (
     <html lang="ja">
       <body
@@ -55,7 +58,7 @@ export default function RootLayout({
                   lg:w-1/5
                 `}
               >
-                <LeftSidebar />
+                <LeftSidebar docs={docs} />
               </div>
 
               <div
