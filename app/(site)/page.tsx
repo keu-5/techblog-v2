@@ -1,5 +1,6 @@
+import { RightSidebar } from "@/app/(site)/right-sidebar";
 import { FolderData } from "@/components/common/folder-data";
-import { Badge } from "@/components/ui/badge";
+import { Tags } from "@/components/composite/tags";
 import { Link } from "@/components/ui/link";
 import { Separator } from "@/components/ui/separator";
 import { MarkdownView } from "@/features/markdownView/components/markdown-view";
@@ -25,19 +26,7 @@ export default function Home() {
         </h1>
 
         <div className="flex flex-wrap gap-2 mb-3">
-          {index.tags?.map((tag) => (
-            <Link
-              key={tag}
-              href={{
-                pathname: "articles",
-                query: {
-                  tag: tag,
-                },
-              }}
-            >
-              <Badge>{tag}</Badge>
-            </Link>
-          ))}
+          <Tags tags={index.tags} />
         </div>
 
         <div className="flex items-center justify-between gap-4 mb-2">
@@ -89,7 +78,7 @@ export default function Home() {
       </div>
 
       <div className="fixed top-12 right-12 w-1/5 p-4 h-screen hidden lg:block">
-        right side bar
+        <RightSidebar content={index.content} tags={index.tags} />
       </div>
     </div>
   );

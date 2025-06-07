@@ -1,5 +1,5 @@
 import { FolderData } from "@/components/common/folder-data";
-import { Badge } from "@/components/ui/badge";
+import { Tags } from "@/components/composite/tags";
 import { Link } from "@/components/ui/link";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { DocIndex } from "@/features/searchResults/models/SearchResultType";
@@ -28,19 +28,7 @@ export const RelatedPosts = ({ docs }: RelatedPostsProps) => {
             </Link>
 
             <div className="flex flex-wrap gap-2">
-              {doc.tags.map((tag) => (
-                <Link
-                  key={tag}
-                  href={{
-                    pathname: "articles",
-                    query: {
-                      tag: tag,
-                    },
-                  }}
-                >
-                  <Badge>{tag}</Badge>
-                </Link>
-              ))}
+              <Tags tags={doc.tags} />
             </div>
 
             <div className="flex items-center justify-between gap-4 mb-2">

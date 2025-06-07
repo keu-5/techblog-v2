@@ -30,12 +30,15 @@
     "rehype-highlight": "^7.0.2",
     "rehype-katex": "^7.0.1",
     "rehype-raw": "^7.0.0",
+    "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",
     "remark-math": "^6.0.0",
+    "remark-parse": "^11.0.0",
     "remark-toc": "^9.0.0",
     "sonner": "^2.0.5",
     "tailwind-merge": "^3.3.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
