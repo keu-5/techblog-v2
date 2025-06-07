@@ -12,13 +12,16 @@ async function main() {
     const file = path.relative(contentDir, fullPath);
     const md = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(md);
+    const stat = fs.statSync(fullPath);
 
     return {
       title: data.title ?? "",
       summary: data.summary ?? "",
       tags: Array.isArray(data.tags) ? data.tags : [],
       slug: file.replace(/\.md$/, ""),
+      folder: path.dirname(file),
       content,
+      updatedAt: stat.mtime.toISOString(),
     };
   });
 

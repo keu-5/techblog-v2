@@ -3,7 +3,9 @@ export type DocIndex = {
   summary: string;
   tags: string[];
   slug: string;
+  folder: string;
   content: string;
+  updatedAt: string;
 };
 
 export type SearchResultType = {
