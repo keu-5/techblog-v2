@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Source_Code_Pro } from "next/font/google";
 
 import { ThemeToggle } from "@/components/composite/theme-toggle";
+import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/providers/theme-provider";
 
 const sourceCodePro = Source_Code_Pro({
@@ -39,7 +40,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ThemeToggle>{children}</ThemeToggle>
+          {children}
+
+          <Toaster />
+          <ThemeToggle />
         </ThemeProvider>
       </body>
     </html>
