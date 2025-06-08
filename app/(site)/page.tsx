@@ -3,12 +3,16 @@ import { FolderData } from "@/components/common/folder-data";
 import { Tags } from "@/components/composite/tags";
 import { Link } from "@/components/ui/link";
 import { Separator } from "@/components/ui/separator";
+import { ShowCounts } from "@/features/count/components/show-counts";
 import { MarkdownView } from "@/features/markdownView/components/markdown-view";
 import { DocIndex } from "@/features/searchResults/models/SearchResultType";
 import { findDocs } from "@/features/searchResults/repositories/searchResultRepository";
 import { siteSettingsData } from "@/lib/constants";
+import { headers } from "next/headers";
 
 export default function Home() {
+  const headersList = headers();
+  const host = headersList.get("host") || "localhost:3000";
   const index =
     findDocs().docs.find((doc) => doc.slug === "index") || ({} as DocIndex);
 
@@ -34,10 +38,7 @@ export default function Home() {
             {new Date(index.createdAt).toLocaleString()}
           </p>
 
-          {/* <div className="flex items-center gap-4">
-            <p className="text-gray-400">Views: {articleData.view_count}</p>
-            <p className="text-gray-400">Liked: {articleData.like_count}</p>
-          </div> */}
+          <ShowCounts slug={index.slug} host={host} />
         </div>
       </div>
 
