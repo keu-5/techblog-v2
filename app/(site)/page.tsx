@@ -4,18 +4,21 @@ import { Tags } from "@/components/composite/tags";
 import { Link } from "@/components/ui/link";
 import { Separator } from "@/components/ui/separator";
 import { LikeCountButton } from "@/features/count/components/like-count-button";
-import { ShowCounts } from "@/features/count/components/show-counts";
+import { findLikedCount } from "@/features/count/repositories/likedCountRepository";
+import { findViewCount } from "@/features/count/repositories/viewCountRepository";
 import { MarkdownView } from "@/features/markdownView/components/markdown-view";
 import { DocIndex } from "@/features/searchResults/models/SearchResultType";
 import { findDocs } from "@/features/searchResults/repositories/searchResultRepository";
 import { siteSettingsData } from "@/lib/constants";
-import { headers } from "next/headers";
 
-export default function Home() {
-  const headersList = headers();
-  const host = headersList.get("host") || "localhost:3000";
+export default async function Home() {
   const index =
     findDocs().docs.find((doc) => doc.slug === "index") || ({} as DocIndex);
+
+  const [currentViewCount, currentLikedCount] = await Promise.all([
+    findViewCount.show(index.slug),
+    findLikedCount.show(index.slug),
+  ]);
 
   return (
     <div className="space-y-8 md:p-10 p-6 w-full rounded-md h-full lg:text-base text-xs z-[100]">
@@ -39,7 +42,10 @@ export default function Home() {
             {new Date(index.createdAt).toLocaleString()}
           </p>
 
-          <ShowCounts slug={index.slug} host={host} />
+          <div className="flex items-center gap-4">
+            <p className="text-gray-400">Views: {currentViewCount.upCount}</p>
+            <p className="text-gray-400">Liked: {currentLikedCount.upCount}</p>
+          </div>
         </div>
       </div>
 
@@ -61,7 +67,7 @@ export default function Home() {
           </div>
         </Link>
 
-        <LikeCountButton slug={index.slug} host={host} />
+        <LikeCountButton slug={index.slug} count={currentLikedCount.upCount} />
       </div>
 
       <div className="fixed top-12 right-12 w-1/5 p-4 h-screen hidden lg:block">

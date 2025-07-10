@@ -1,27 +1,28 @@
 "use client";
 
 import { Toggle } from "@/components/ui/toggle";
-import { findCount } from "@/features/count/repositories/viewCountRepository";
+import { findLikedCount } from "@/features/count/repositories/likedCountRepository";
 import { HeartFilledIcon, HeartIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { toast } from "sonner";
 
 interface LikeCountButtonProps {
   slug: string;
-  host: string;
+  count: number;
 }
 
-//TODO: 使用するエンドポイントの修正
-export const LikeCountButton = ({ slug, host }: LikeCountButtonProps) => {
+export const LikeCountButton = ({ slug, count }: LikeCountButtonProps) => {
   const [liked, setLiked] = useState(false);
-  const [likedCount, setLikedCount] = useState(0);
+  const [likedCount, setLikedCount] = useState(count || 0);
 
   const addLikeCount = async () => {
     try {
-      const response = await findCount(slug, host, "like");
-      setLikedCount(response);
-    } catch {
-      toast("Failed to increment like count");
+      const response = await findLikedCount.up(slug);
+      setLikedCount(response.upCount);
+      setLiked(true);
+      toast("Thanks for liking!");
+    } catch (error) {
+      toast("Failed to increment like count}");
     }
   };
 
@@ -39,7 +40,7 @@ export const LikeCountButton = ({ slug, host }: LikeCountButtonProps) => {
         ) : (
           <HeartIcon className="w-4 h-4" />
         )}
-        {likedCount}
+        {liked ? likedCount + 1 : likedCount}
       </div>
     </Toggle>
   );
