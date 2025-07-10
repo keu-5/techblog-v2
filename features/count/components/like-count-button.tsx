@@ -40,7 +40,7 @@ export const LikeCountButton = ({ slug, count }: LikeCountButtonProps) => {
         ) : (
           <HeartIcon className="w-4 h-4" />
         )}
-        {liked ? likedCount + 1 : likedCount}
+        {likedCount}
       </div>
     </Toggle>
   );

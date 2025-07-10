@@ -9,7 +9,7 @@ export type CounterType = {
     slug: string;
     termId: number;
     upCount: number;
-    updatetdAt: Date;
+    updatedAt: Date;
     userId: number;
     workspaceId: number;
     workspaceSlug: string;
