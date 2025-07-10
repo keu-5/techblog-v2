@@ -1,11 +1,17 @@
-export type ActionType = "view" | "like";
-
-export type Count = {
-  value: number;
-  formatted: string;
-  abv: string;
-  ns: string;
-  action: ActionType;
-  key: string;
-  iconSvg: string;
+export type CounterType = {
+  code: string;
+  data: {
+    createdAt: Date;
+    description: string;
+    downCount: number;
+    id: number;
+    name: string;
+    slug: string;
+    termId: number;
+    upCount: number;
+    updatetdAt: Date;
+    userId: number;
+    workspaceId: number;
+    workspaceSlug: string;
+  };
 };

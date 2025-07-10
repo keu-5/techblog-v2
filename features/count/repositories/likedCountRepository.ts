@@ -1,11 +1,11 @@
 import { CounterType } from "@/features/count/models/countType";
 import { getBaseUrl, toCamelCase } from "@/lib/utils";
 
-export const findViewCount = {
+export const findLikedCount = {
   show: async (slug: string): Promise<CounterType["data"]> => {
     try {
       const baseUrl = getBaseUrl();
-      const response = await fetch(`${baseUrl}/api/view-count/${slug}`, {
+      const response = await fetch(`${baseUrl}/api/liked-count/${slug}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -13,7 +13,7 @@ export const findViewCount = {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to fetch view count");
+        throw new Error("Failed to fetch liked count");
       }
 
       const raw = await response.json();
@@ -21,13 +21,13 @@ export const findViewCount = {
 
       return data;
     } catch (error) {
-      throw new Error("Could not retrieve view count");
+      throw new Error("Could not retrieve liked count");
     }
   },
   up: async (slug: string): Promise<CounterType["data"]> => {
     try {
       const baseUrl = getBaseUrl();
-      const response = await fetch(`${baseUrl}/api/view-count/${slug}`, {
+      const response = await fetch(`${baseUrl}/api/liked-count/${slug}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -35,7 +35,7 @@ export const findViewCount = {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to increment view count");
+        throw new Error("Failed to increment liked count");
       }
 
       const raw = await response.json();
@@ -43,7 +43,7 @@ export const findViewCount = {
 
       return data;
     } catch (error) {
-      throw new Error("Could not increment view count");
+      throw new Error("Could not increment liked count");
     }
   },
 };
