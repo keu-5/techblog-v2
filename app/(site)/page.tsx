@@ -3,6 +3,7 @@ import { FolderData } from "@/components/common/folder-data";
 import { Tags } from "@/components/composite/tags";
 import { Link } from "@/components/ui/link";
 import { Separator } from "@/components/ui/separator";
+import { LikeCountButton } from "@/features/count/components/like-count-button";
 import { ShowCounts } from "@/features/count/components/show-counts";
 import { MarkdownView } from "@/features/markdownView/components/markdown-view";
 import { DocIndex } from "@/features/searchResults/models/SearchResultType";
@@ -60,22 +61,7 @@ export default function Home() {
           </div>
         </Link>
 
-        {/* <Toggle
-          onClick={addLikeCount}
-          variant="outline"
-          asChild
-          className="text-gray-400 border-gray-400"
-          disabled={liked}
-        >
-          <div>
-            {liked ? (
-              <HeartFilledIcon className="w-4 h-4" />
-            ) : (
-              <HeartIcon className="w-4 h-4" />
-            )}
-            {articleData.like_count}
-          </div>
-        </Toggle> */}
+        <LikeCountButton slug={index.slug} host={host} />
       </div>
 
       <div className="fixed top-12 right-12 w-1/5 p-4 h-screen hidden lg:block">
