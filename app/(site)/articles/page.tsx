@@ -15,23 +15,24 @@ interface PageProps {
 const ITEMS_PER_PAGE = 8;
 
 export default function Page({ searchParams }: PageProps) {
-  const articles = findDocs().docs.filter((doc) => doc.slug !== "index");
+  let articles = findDocs().docs.filter((doc) => doc.slug !== "index");
   const currentPage = parseInt(searchParams.page as string) || 1;
 
   const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIdx = startIdx + ITEMS_PER_PAGE;
-  let currentItems = articles.slice(startIdx, endIdx);
 
   if (searchParams.folder) {
-    currentItems = currentItems.filter(
+    articles = articles.filter(
       (article) => article.folder === searchParams.folder,
     );
   }
   if (searchParams.tag) {
-    currentItems = currentItems.filter((article) =>
+    articles = articles.filter((article) =>
       article.tags.includes(searchParams.tag as string),
     );
   }
+
+  let currentItems = articles.slice(startIdx, endIdx);
 
   return (
     <div className="space-y-8 p-10 w-full rounded-md h-full z-[100]">
@@ -95,7 +96,11 @@ export default function Page({ searchParams }: PageProps) {
           </div>
         </div>
       ))}
-      <Pagination totalItems={articles.length} itemsPerPage={ITEMS_PER_PAGE} />
+      <Pagination
+        totalItems={articles.length}
+        itemsPerPage={ITEMS_PER_PAGE}
+        currentPage={currentPage}
+      />
     </div>
   );
 }

@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Pagination as Paginate,
   PaginationContent,
@@ -9,31 +7,20 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
 
 interface PaginationProps {
   totalItems: number;
   itemsPerPage: number;
+  currentPage: number;
 }
 
-//TODO: サーバサイドコンポーネントにする
 /**@package */
-export const Pagination = ({ totalItems, itemsPerPage }: PaginationProps) => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const [currentPage, setCurrentPage] = useState<number>(1);
+export const Pagination = ({
+  totalItems,
+  itemsPerPage,
+  currentPage,
+}: PaginationProps) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
-
-  const handlePageChange = (page: number) => {
-    if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
-
-      const params = new URLSearchParams(searchParams);
-      params.set("page", page.toString());
-      router.push(`${window.location.pathname}?${params.toString()}`);
-    }
-  };
 
   const getPageNumbers = () => {
     const visibleRange = 2;
@@ -66,28 +53,13 @@ export const Pagination = ({ totalItems, itemsPerPage }: PaginationProps) => {
     return pages;
   };
 
-  useEffect(() => {
-    const pageFromUrl = searchParams.get("page");
-    if (pageFromUrl) {
-      const pageNumber = parseInt(pageFromUrl, 10);
-
-      if (!isNaN(pageNumber) && pageNumber >= 1 && pageNumber <= totalPages) {
-        setCurrentPage(pageNumber);
-      }
-    }
-  }, [searchParams, totalPages]);
-
   return (
     getPageNumbers().length > 1 && (
       <Paginate>
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                handlePageChange(currentPage - 1);
-              }}
+              href={`/articles?page=${currentPage - 1}`}
               aria-disabled={currentPage <= 1}
               tabIndex={currentPage <= 1 ? -1 : undefined}
               className={
@@ -101,12 +73,8 @@ export const Pagination = ({ totalItems, itemsPerPage }: PaginationProps) => {
             ) : (
               <PaginationItem key={page}>
                 <PaginationLink
-                  href="#"
+                  href={`/articles?page=${page}`}
                   isActive={currentPage === page}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handlePageChange(page as number);
-                  }}
                 >
                   {page}
                 </PaginationLink>
@@ -115,11 +83,7 @@ export const Pagination = ({ totalItems, itemsPerPage }: PaginationProps) => {
           )}
           <PaginationItem>
             <PaginationNext
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                handlePageChange(currentPage + 1);
-              }}
+              href={`/articles?page=${currentPage + 1}`}
               aria-disabled={currentPage >= totalPages}
               tabIndex={currentPage >= totalPages ? -1 : undefined}
               className={
