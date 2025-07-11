@@ -10,7 +10,7 @@ export const Tags = ({ tags }: TagsProps) => {
     <Link
       key={tag}
       href={{
-        pathname: "articles",
+        pathname: "/articles",
         query: {
           tag,
         },
