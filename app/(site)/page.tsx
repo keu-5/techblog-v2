@@ -11,6 +11,21 @@ import { DocIndex } from "@/features/searchResults/models/SearchResultType";
 import { findDocs } from "@/features/searchResults/repositories/searchResultRepository";
 import { siteSettingsData } from "@/lib/constants";
 
+export async function generateMetadata() {
+  const index =
+    findDocs().docs.find((doc) => doc.slug === "index") || ({} as DocIndex);
+
+  return {
+    title: index.title,
+    description: index.summary || siteSettingsData.metaDescription,
+    openGraph: {
+      title: index.title,
+      description: index.summary || siteSettingsData.metaDescription,
+      url: `${siteSettingsData.baseUrl}/${index.slug}`,
+    },
+  };
+}
+
 export default async function Home() {
   const index =
     findDocs().docs.find((doc) => doc.slug === "index") || ({} as DocIndex);

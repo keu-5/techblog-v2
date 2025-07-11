@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/components/ui/link";
 import { findDocs } from "@/features/searchResults/repositories/searchResultRepository";
+import { siteSettingsData } from "@/lib/constants";
 import { format } from "date-fns";
 
 interface PageProps {
@@ -13,6 +14,18 @@ interface PageProps {
 }
 
 const ITEMS_PER_PAGE = 8;
+
+export async function generateMetadata() {
+  return {
+    title: "Articles",
+    description: "List of articles",
+    openGraph: {
+      title: "Articles",
+      description: "List of articles",
+      url: `${siteSettingsData.baseUrl}/articles`,
+    },
+  };
+}
 
 export default function Page({ searchParams }: PageProps) {
   let articles = findDocs().docs.filter((doc) => doc.slug !== "index");
