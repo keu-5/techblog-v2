@@ -387,7 +387,7 @@ ax = pca_malignant.plot.scatter(x='pc1', y='pc2', color='red', label='malignant'
 pca_benign.plot.scatter(x='pc1', y='pc2', color='blue', label='benign', ax=ax);
 
 # おおよその境界線
-x = np.arrange(-5, 9)
+x = np.arange(-5, 9)
 y = 1.7 * x - 0.8
 ax.plot(x, y, color="black")
 ```
