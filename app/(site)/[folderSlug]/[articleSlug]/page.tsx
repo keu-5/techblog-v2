@@ -11,9 +11,20 @@ import { DocIndex } from "@/features/searchResults/models/SearchResultType";
 import { findDocs } from "@/features/searchResults/repositories/searchResultRepository";
 import { siteSettingsData } from "@/lib/constants";
 
-export default async function Home() {
+interface articleSlugPageProps {
+  params: {
+    folderSlug: string;
+    articleSlug: string;
+  };
+}
+
+export default async function articleSlugPage({
+  params,
+}: articleSlugPageProps) {
   const index =
-    findDocs().docs.find((doc) => doc.slug === "index") || ({} as DocIndex);
+    findDocs().docs.find(
+      (doc) => doc.slug === `${params.folderSlug}/${params.articleSlug}`,
+    ) || ({} as DocIndex);
 
   const [viewResult, likedResult] = await Promise.allSettled([
     findViewCount.show(index.slug),
