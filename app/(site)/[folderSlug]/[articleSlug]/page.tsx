@@ -18,6 +18,23 @@ interface articleSlugPageProps {
   };
 }
 
+export async function generateMetadata({ params }: articleSlugPageProps) {
+  const index =
+    findDocs().docs.find(
+      (doc) => doc.slug === `${params.folderSlug}/${params.articleSlug}`,
+    ) || ({} as DocIndex);
+
+  return {
+    title: index.title,
+    description: index.summary || siteSettingsData.metaDescription,
+    openGraph: {
+      title: index.title,
+      description: index.summary || siteSettingsData.metaDescription,
+      url: `/${index.slug}`,
+    },
+  };
+}
+
 export default async function articleSlugPage({
   params,
 }: articleSlugPageProps) {
