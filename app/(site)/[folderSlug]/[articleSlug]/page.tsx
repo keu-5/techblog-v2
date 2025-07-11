@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: articleSlugPageProps) {
     openGraph: {
       title: index.title,
       description: index.summary || siteSettingsData.metaDescription,
-      url: `/${index.slug}`,
+      url: `${siteSettingsData.baseUrl}/${index.slug}`,
     },
   };
 }

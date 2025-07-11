@@ -21,7 +21,7 @@ export async function generateMetadata() {
     openGraph: {
       title: index.title,
       description: index.summary || siteSettingsData.metaDescription,
-      url: `/${index.slug}`,
+      url: `${siteSettingsData.baseUrl}/${index.slug}`,
     },
   };
 }
