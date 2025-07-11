@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# techblog-v2
 
-## Getting Started
+## 概要
 
-First, run the development server:
+**techblog-v2** は、Next.js (TypeScript) を使ったシンプルな技術ブログアプリケーションです。  
+フロントエンドは Next.js App Router 構成、Tailwind CSS を用いてモダンな UI を実現しています。  
+
+---
+
+## 主な機能
+
+- 記事（投稿）の一覧表示・詳細表示
+- 記事の新規投稿・編集・削除
+- サーバサイドレンダリング (SSR) による高速かつ安全な表示
+- 型安全な開発（TypeScript/型定義）
+- クリーンなディレクトリ構成とコンポーネント分割
+
+---
+
+## ディレクトリ構成 (一部抜粋)
+
+```
+techblog-v2/
+├── app/                # Next.js アプリケーション本体
+│   ├── page.tsx        # 投稿一覧ページ (SSR)
+│   └── posts/
+│       ├── [id]/       # 投稿詳細・編集 (動的ルーティング)
+│       │   ├── page.tsx
+│       │   └── edit-post/
+│       │       └── page.tsx
+│       └── create-post/
+│           └── page.tsx
+├── lib/
+│   └── types.ts        # 型定義
+├── content/
+│   └── Next.js/
+│       └── next-rails-tutorial.md # 開発手順・詳細解説
+├── public/
+├── styles/
+├── package.json
+└── ...
+```
+
+---
+
+## セットアップ
+
+### 1. 依存パッケージのインストール
+
+```bash
+npm install
+```
+
+### 2. 記事データの読み込み
+```bash
+npm run generate:search
+```
+
+### 3. 開発サーバ起動
 
 ```bash
 npm run dev
-# or
+# または
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 技術スタック
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **フロントエンド**: Next.js (TypeScript, App Router), Tailwind CSS
+- **スタイリング**: Tailwind CSS
+- **型定義**: TypeScript
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 参考リンク
 
-To learn more about Next.js, take a look at the following resources:
+- [Next.js 公式ドキュメント](https://nextjs.org/docs)
+- [Tailwind CSS ドキュメント](https://tailwindcss.com/docs)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
