@@ -6,7 +6,7 @@ tags: ["Next.js", "eslint", "vscode", "tailwindcss"]
 
 # ESLintの設定
 
-## ESlintとは
+## ESLintとは
 
 ESlintはJavaScriptやTypeScriptなどに使える静的解析ツールです．any型を許容するのか，アロー関数のみを使うのかなど，多岐に渡って厳密なルールを定義することでコードの一貫性を維持することができます．
 
