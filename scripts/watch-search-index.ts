@@ -50,17 +50,28 @@ async function main() {
       ignored: /(^|[\/\\])\../,
       persistent: true,
     })
-    .on("add", () => {
-      generateSearchIndex();
+    .on("add", async () => {
+      try {
+        await generateSearchIndex();
+      } catch (error) {
+        console.error("[search-index.json] Error during generation:", error);
+      }
       triggerRerender();
     })
-    .on("change", () => {
-      generateSearchIndex();
+    .on("change", async () => {
+      try {
+        await generateSearchIndex();
+      } catch (error) {
+        console.error("[search-index.json] Error during generation:", error);
+      }
       triggerRerender();
     })
-    .on("unlink", () => {
-      generateSearchIndex();
-      triggerRerender();
+    .on("unlink", async () => {
+      try {
+        await generateSearchIndex();
+      } catch (error) {
+        console.error("[search-index.json] Error during generation:", error);
+      }
     });
 }
 
