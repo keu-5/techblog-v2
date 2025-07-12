@@ -10,6 +10,7 @@ import { MarkdownView } from "@/features/markdownView/components/markdown-view";
 import { DocIndex } from "@/features/searchResults/models/SearchResultType";
 import { findDocs } from "@/features/searchResults/repositories/searchResultRepository";
 import { siteSettingsData } from "@/lib/constants";
+import "@/lib/force-refresh";
 
 export async function generateMetadata() {
   const index =
