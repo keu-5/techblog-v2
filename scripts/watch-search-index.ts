@@ -8,6 +8,12 @@ import path from "path";
 const contentDir = path.join(process.cwd(), "content");
 const outputPath = path.join(process.cwd(), "public", "search-index.json");
 
+function triggerRerender() {
+  const flagPath = path.join(process.cwd(), "lib", "force-refresh.ts");
+  const ts = new Date().toISOString();
+  fs.writeFileSync(flagPath, `// refreshed at ${ts}\n`);
+}
+
 async function generateSearchIndex() {
   const files = await glob("**/*.md", { cwd: contentDir, absolute: true });
 
@@ -44,9 +50,18 @@ async function main() {
       ignored: /(^|[\/\\])\../,
       persistent: true,
     })
-    .on("add", generateSearchIndex)
-    .on("change", generateSearchIndex)
-    .on("unlink", generateSearchIndex);
+    .on("add", () => {
+      generateSearchIndex();
+      triggerRerender();
+    })
+    .on("change", () => {
+      generateSearchIndex();
+      triggerRerender();
+    })
+    .on("unlink", () => {
+      generateSearchIndex();
+      triggerRerender();
+    });
 }
 
 main();
