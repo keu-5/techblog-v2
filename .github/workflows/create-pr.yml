@@ -13,16 +13,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up GitHub CLI
-        uses: cli/cli-action@v2
-        with:
-          version: latest
+      - name: Install GitHub CLI
+        run: |
+          sudo apt update
+          sudo apt install gh -y
+
+      - name: Authenticate with GitHub CLI
+        run: echo "${{ secrets.GH_TOKEN }}" | gh auth login --with-token
 
       - name: Create pull request to production
         run: |
-          git fetch origin production || git checkout -b production
-          gh auth login --with-token <<< "${{ secrets.GH_TOKEN }}"
-          
+          git fetch origin production
           gh pr create \
             --base production \
             --head main \
