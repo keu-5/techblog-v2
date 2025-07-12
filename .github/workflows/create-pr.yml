@@ -25,9 +25,21 @@ jobs:
       - name: Authenticate with GitHub CLI
         run: echo "${{ secrets.GH_TOKEN }}" | gh auth login --with-token
 
-      - name: Create pull request to production
+      - name: Check if PR already exists
+        id: check_pr
         run: |
-          git fetch origin production
+          gh auth login --with-token <<< "${{ secrets.GH_TOKEN }}"
+          pr=$(gh pr list --base production --head main --json number -q '.[0].number')
+          if [ -n "$pr" ]; then
+            echo "PR already exists: #$pr"
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create pull request to production
+        if: steps.check_pr.outputs.exists == 'false'
+        run: |
           gh pr create \
             --base production \
             --head main \
