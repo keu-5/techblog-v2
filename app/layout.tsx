@@ -6,6 +6,7 @@ import { Source_Code_Pro } from "next/font/google";
 import { ThemeToggle } from "@/components/composite/theme-toggle";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { Analytics } from "@vercel/analytics/next";
 
 const sourceCodePro = Source_Code_Pro({
   weight: "400",
@@ -41,7 +42,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-
+          <Analytics />
           <Toaster />
           <ThemeToggle />
         </ThemeProvider>
