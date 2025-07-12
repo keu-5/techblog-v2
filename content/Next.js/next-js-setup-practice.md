@@ -4,7 +4,7 @@ summary: "eslintの設定やtailwind等の設定をいじって開発体験を�
 tags: ["Next.js", "eslint", "vscode", "tailwindcss"]
 ---
 
-# ESlintの設定
+# ESLintの設定
 
 ## ESlintとは
 
