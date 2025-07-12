@@ -51,18 +51,15 @@ techblog-v2/
 npm install
 ```
 
-### 2. 記事データの読み込み
-```bash
-npm run generate:search
-```
-
-### 3. 開発サーバ起動
+### 2. 開発サーバ起動
 
 ```bash
 npm run dev
 # または
 yarn dev
 ```
+
+dev環境内で記事データを更新すると自動で再レンダリングされます．
 
 ## 技術スタック
 
