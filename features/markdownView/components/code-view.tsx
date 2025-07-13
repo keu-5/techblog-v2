@@ -1,6 +1,7 @@
 "use client";
 import { ClipBoardIcon } from "@/components/icons/clipboard";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { Mermaid } from "@/features/markdownView/components/mermaid";
 import { cn } from "@/lib/utils";
 import { useRef } from "react";
 import { toast } from "sonner";
@@ -48,7 +49,11 @@ export const CodeView = ({ className, children, ...props }: CodeViewProps) => {
           </button>
         </div>
         <ScrollArea className="lg:text-sm text-xs" ref={textRef}>
-          <div className="mb-4">{children}</div>
+          {className?.includes("language-mermaid") ? (
+            <Mermaid>{children}</Mermaid>
+          ) : (
+            <div className="mb-4">{children}</div>
+          )}
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
       </div>
