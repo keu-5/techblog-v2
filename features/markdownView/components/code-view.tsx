@@ -49,7 +49,7 @@ export const CodeView = ({ className, children, ...props }: CodeViewProps) => {
           </button>
         </div>
         <ScrollArea className="lg:text-sm text-xs" ref={textRef}>
-          {className === "hljs language-mermaid" ? (
+          {className?.includes("language-mermaid") ? (
             <Mermaid>{children}</Mermaid>
           ) : (
             <div className="mb-4">{children}</div>
