@@ -27,3 +27,45 @@ $$
 ただしバックプロパゲーションは複雑なアルゴリズムで容易にバグが現れてしまう．そこで実装の正しさを確認するために数値微分の結果を用いることがある(勾配確認)
 
 # バックプロパゲーションの理論
+
+合成関数の微分のこと．例えば$y=f(g(x))$の微分は
+
+$$
+\frac{dy}{dx}=f'(g(x))\cdot g'(x)=\frac{dy}{dg}\cdot\frac{dg}{dx}
+$$
+
+ここで3つの関数から成る合成関数を微分してみる
+
+$$
+y=h\circ g\circ f = h(g(f(x)))\quad\to\quad\frac{dy}{dx}=\frac{dy}{dy}\cdot\frac{dy}{dg}\cdot\frac{dg}{df}\cdot\frac{df}{dx}
+$$
+
+これを計算グラフで表現してみると
+
+```mermaid
+---
+config:
+  theme: 'base'
+  themeVariables:
+    primaryColor: 'rgb(65, 72, 104)'
+    primaryTextColor: 'rgb(192, 202, 245)'
+    primaryBorderColor: 'rgb(122, 162, 247)'
+    lineColor: 'rgb(122, 162, 247)'
+---
+flowchart LR
+    x["x"] -->|"f"| fx["f(x)"]
+    fx -->|"g"| gfx["g(f(x))"]
+    gfx -->|"h"| y["y"]
+
+    y --> dydy["dy/dy = 1"]
+
+    dydy -->|"h'(g(f(x)))"| dydg["dy/dg"]
+    dydg -->|"g'(f(x))"| dydf["dy/df"]
+    dydf -->|"f'(x)"| dydx["dy/dx"]
+
+    gfx -.-> dydg
+    fx -.-> dydf
+    x -.-> dydx
+```
+
+このような関係性になる
