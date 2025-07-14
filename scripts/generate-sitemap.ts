@@ -14,8 +14,9 @@ async function main() {
   for (const fullPath of files) {
     const file = path.relative(contentDir, fullPath);
     const slug = file.replace(/\.md$/, "");
-    const folder = path.dirname(slug);
+    let folder = path.dirname(slug);
     const article = path.basename(slug);
+    folder = folder === '.' ? '' : folder; // Treat '.' as the root directory
     const url = `${baseUrl}/${folder}/${article}`;
     urls.push(url);
   }
