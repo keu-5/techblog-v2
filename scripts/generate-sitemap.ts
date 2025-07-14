@@ -37,6 +37,6 @@ ${urls
 }
 
 main().catch((err) => {
-  console.error("sitemap.xml生成中にエラー:", err);
+  console.error("Error occurred while generating sitemap.xml:", err);
   process.exit(1);
 });
