@@ -14,15 +14,34 @@ export const Mermaid = memo(({ children }: { children: React.ReactNode }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const divRef = useRef<HTMLDivElement>(null);
+  const [rendered, setRendered] = useState(false);
 
   useEffect(() => {
-    if (divRef.current) {
-      mermaid.run({ nodes: [divRef.current] });
-    }
+    setRendered(false);
   }, [children]);
 
   useEffect(() => {
-    if (divRef.current) {
+    const renderMermaid = async () => {
+      if (divRef.current && !rendered) {
+        const mermaidCode = String(children);
+        const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`;
+
+        try {
+          const { svg } = await mermaid.render(id, mermaidCode);
+          divRef.current.innerHTML = svg;
+          setRendered(true);
+        } catch (error) {
+          console.error('Mermaid rendering error:', error);
+          divRef.current.innerHTML = `<pre>${mermaidCode}</pre>`;
+        }
+      }
+    };
+
+    renderMermaid();
+  }, [children, rendered]);
+
+  useEffect(() => {
+    if (divRef.current && rendered) {
       const svgElement = divRef.current.querySelector("svg");
       if (svgElement) {
         svgElement.style.transform = `translate(${position.x}px, ${position.y}px) scale(${scale})`;
@@ -33,7 +52,7 @@ export const Mermaid = memo(({ children }: { children: React.ReactNode }) => {
           : "transform 0.1s ease-out";
       }
     }
-  }, [scale, position, isDragging, children]);
+  }, [scale, position, isDragging, rendered]);
 
   const zoomAt = (clientX: number, clientY: number, deltaScale: number) => {
     const container = divRef.current;
@@ -165,9 +184,7 @@ export const Mermaid = memo(({ children }: { children: React.ReactNode }) => {
           height: "100%",
           background: "#1e1e1e",
         }}
-      >
-        {children}
-      </div>
+      />
 
       <div
         style={{
