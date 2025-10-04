@@ -53,10 +53,11 @@ tags: ["Go", "Next.js", "OpenAPI", "Docker", "TypeScript"]
 
 ```mermaid
 graph TD
-    A[Goソースコード + Swagコメント] --> |make gen-swagger-v2| B[swagger.yaml/json生成 (OAS2)]
-    B --> |make gen-openapi-v3| C[OpenAPI v3に変換]
-    C --> |make gen-client| D[Next.js用APIクライアント生成]
-    D --> E[Next.jsで型安全な useQuery/useMutation 呼び出し]
+    A["Goソースコード＋Swagコメント"]
+        -->|make gen-swagger-v2| B["swagger.yaml/json生成 (OAS2)"]
+    B -->|make gen-openapi-v3| C["OpenAPI v3に変換"]
+    C -->|make gen-client| D["Next.js用APIクライアント生成"]
+    D --> E["Next.jsで型安全な useQuery / useMutation 呼び出し"]
 ```
 
 すべての生成処理は `Makefile` と `Docker` によって自動化されるため、
@@ -411,9 +412,9 @@ OpenAPI v3へ変換することで、以下の利点が得られます。
 
 ```mermaid
 flowchart TD
-    A[Goソースコード<br/>(Fiber + Swagコメント)]
-        --> B[make gen-swagger-v2<br/>→ swagger.yaml / swagger.json (OAS2)]
-        --> C[make gen-openapi-v3<br/>→ openapi.yaml / openapi.json (OAS3)]
+    A["Goソースコード\n(Fiber + Swagコメント)"]
+        --> B["make gen-swagger-v2\n→ swagger.yaml / swagger.json (OAS2)"]
+        --> C["make gen-openapi-v3\n→ openapi.yaml / openapi.json (OAS3)"]
 ```
 
 このOpenAPI v3定義を使えば、次章で **Next.js側のAPIクライアントを自動生成** できます。
@@ -908,10 +909,10 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 アプリは以下の4サービスで構成されています。
 
 ```mermaid
-graph LR
-    F[frontend] --> N[nginx]
-    N --> B[backend]
-    B --> D[db (PostgreSQL)]
+graph TD
+    F["frontend"] --> N["nginx"]
+    N --> B["backend"]
+    B --> D["db (PostgreSQL)"]
 ```
 
 - **frontend**：Next.js（TypeScript）
@@ -1574,11 +1575,12 @@ docker compose build --no-cache
 ### 8.1 今回構築した仕組みの全体像
 
 ```mermaid
-graph LR
-    A[Go Fiber] --> B[Swagger v2]
-    B --> C[OpenAPI v3]
-    C --> D[Orval]
-    D --> E[React Query]
+graph TD
+    A["Go Fiber"]
+        --> B["Swagger v2"]
+    B --> C["OpenAPI v3"]
+    C --> D["Orval"]
+    D --> E["React Query"]
 ```
 
 これを1本のパイプラインとしてつなぎ、
