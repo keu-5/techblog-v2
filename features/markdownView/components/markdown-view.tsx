@@ -114,7 +114,7 @@ export const MarkdownView = ({
           a: ({ ...props }) => (
             <Link
               href={`${props.href}`}
-              className="hover:underline  block truncate max-w-full dark:text-gray-300 text-gray-400"
+              className="hover:underline block break-words max-w-full dark:text-gray-300 text-gray-400"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -157,13 +157,13 @@ export const MarkdownView = ({
           ),
           blockquote: ({ ...props }) => (
             <blockquote
-              className="dark:bg-cyan-900 bg-gray-100 rounded-md italic p-4 text-base mb-6 flex flex-col gap-2"
+              className="dark:bg-cyan-900 bg-gray-100 rounded-md italic p-4 text-base mb-6 flex flex-col gap-2 overflow-hidden"
               {...props}
             >
               <p className="not-italic dark:text-blue-200 text-blue-700">
                 <Flame className="h-4 w-4 inline" /> Tip
               </p>
-              <span className="mx-3 dark:text-white text-gray-800">
+              <span className="mx-3 dark:text-white text-gray-800 break-words">
                 {props.children}
               </span>
             </blockquote>
