@@ -20,9 +20,21 @@ async function main() {
     urls.push(url);
   }
 
+  const now = new Date().toISOString();
+
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map((url) => `  <url><loc>${url}</loc></url>`).join("\n")}
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+${urls.map((url) => `<url>
+  <loc>${url}</loc>
+  <lastmod>${now}</lastmod>
+  <priority>0.80</priority>
+</url>`).join("\n")}
+
 </urlset>`;
 
   const outputPath = path.join(process.cwd(), "public", "sitemap.xml");
