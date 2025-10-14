@@ -7,6 +7,7 @@ import { LikeCountButton } from "@/features/count/components/like-count-button";
 import { findLikedCount } from "@/features/count/repositories/likedCountRepository";
 import { findViewCount } from "@/features/count/repositories/viewCountRepository";
 import { MarkdownView } from "@/features/markdownView/components/markdown-view";
+import { Recommendation } from "@/features/recommendation/components/recommendation";
 import { DocIndex } from "@/features/searchResults/models/SearchResultType";
 import { findDocs } from "@/features/searchResults/repositories/searchResultRepository";
 import { siteSettingsData } from "@/lib/constants";
@@ -28,8 +29,8 @@ export async function generateMetadata() {
 }
 
 export default async function Home() {
-  const index =
-    findDocs().docs.find((doc) => doc.slug === "index") || ({} as DocIndex);
+  const allDocs = findDocs().docs;
+  const index = allDocs.find((doc) => doc.slug === "index") || ({} as DocIndex);
 
   const [viewResult, likedResult] = await Promise.allSettled([
     findViewCount.show(index.slug),
@@ -76,6 +77,8 @@ export default async function Home() {
           </div>
         </div>
       </div>
+
+      <Recommendation docs={allDocs} />
 
       <div className="space-y-8 w-full rounded-md h-full lg:text-base text-xs z-[100]">
         <MarkdownView markdownString={index.content || ""} />
