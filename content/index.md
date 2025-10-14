@@ -1,33 +1,35 @@
 ---
 title: "Welcome!"
-summary: "Let me introduce myself and this site!"
-tags: ["profile", "about", "self"]
+summary: "自己紹介とこのサイトについて！"
+tags: ["プロフィール", "自己紹介", "About"]
 ---
 
-# 👋 Introduction
+# 👋 自己紹介
 
-Hay! I'm Marte, a univ student.
+こんにちは！Marteです。
+大学でコンピュータサイエンスを専攻しています。
 
-I study computer science, especially I'm into web development and machine learning (AI) like deep learning, generative model and so on.
+特にWeb開発や機械学習（AI）分野、
+中でも深層学習や生成モデルに強い関心があります。
 
-So, I gonna think out loud what I am studying about!
+このサイトでは、学んでいることや考えたことを整理・発信していきます。
 
-# 🧠 Developer Skill Map (Mindmap Style)
+---
 
-A visual breakdown of my current skills, tools, projects, and learning focus as a full-stack developer.
+# 🧠 開発者スキルマップ（Mindmap）
 
 ```mermaid
 mindmap
-  root((🧑‍💻 Me as Developer))
-    Skills
-      Programming Languages
+  root((🧑‍💻 開発者としての自分))
+    スキル
+      プログラミング言語
         ::icon(fa fa-code)
         TypeScript
         Python
         Go
         Ruby
         C
-      Frontend
+      フロントエンド
         ::icon(fa fa-laptop)
         Next.js
         Nuxt.js
@@ -35,63 +37,63 @@ mindmap
         Vue.js
         Tailwind CSS
         HTML/CSS
-      Backend
+      バックエンド
         ::icon(fa fa-server)
         Django
         Ruby on Rails
         REST APIs
         WebSocket
         Fiber
-      Database
+      データベース
         ::icon(fa fa-database)
         PostgreSQL
         MySQL
         SQLite
         Redis
         Elasticsearch
-    Tools & Tech
+    ツール・技術
       ::icon(fa fa-tools)
-      Development
+      開発環境
         Git / GitHub
         Docker
         VS Code
         Vim / Neovim
         Nginx
-      Cloud & DevOps
+      クラウド・DevOps
         AWS
         Vercel
         GitHub Actions
         CI/CD
-    Projects
+    プロジェクト
       ::icon(fa fa-rocket)
-      Major Works
-        Portfolio Site
+      主な作品
+        ポートフォリオサイト
         TechBlog v1
         TechBlog v2
         長期インターンのプロダクト
         学生団体公式サイト
-    Activities
+    活動
       ::icon(fa fa-users)
       教育活動
-        STEP (中学生向けプログラミング)
+        STEP（中学生向けプログラミング教育）
         大学内DX支援（社会人向け）
-    Learning
+    学習中
       ::icon(fa fa-graduation-cap)
-      Currently Studying
+      現在学んでいること
         深層学習
         Go + PostgreSQL設計
-        OAuth & 認証・認可
+        OAuth・認証／認可
         API設計（REST / WebSocket）
-      Future Goals
+      今後の目標
         テックリード
         AI/ML応用
         生成AIツール開発
         クラウドアーキテクチャ
 ```
 
-# 🕰️ My Developer Journey (GitGraph Style)
+---
 
-A chronological map of my developer journey, from entering CS to my current goals and practical experience.
+# 🕰️ 開発者としての歩み（GitGraph）
 
 ```mermaid
 gitGraph
@@ -140,7 +142,11 @@ gitGraph
     merge future
 ```
 
-# 🔗 Links
+---
 
-- [Github](https://github.com/keu-5)
+# 🔗 リンク
+
+- [GitHub](https://github.com/keu-5)
 - [Qiita](https://qiita.com/keu5)
+
+---
