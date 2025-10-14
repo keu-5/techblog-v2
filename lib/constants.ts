@@ -4,4 +4,10 @@ const siteSettingsData = {
   baseUrl: process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000",
 };
 
-export { siteSettingsData };
+const recommendedPostSlugs: string[] = [
+  "Next.js/techblog-making",
+  "Next.js/api-client-automation",
+  "docker/uv-venv",
+];
+
+export { recommendedPostSlugs, siteSettingsData };
