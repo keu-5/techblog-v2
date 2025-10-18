@@ -5,7 +5,7 @@ const siteSettingsData = {
 };
 
 const recommendedPostSlugs: string[] = [
-  "Next.js/techblog-making",
+  "auth/auth-tutorial-1",
   "Next.js/api-client-automation",
   "docker/uv-venv",
 ];
